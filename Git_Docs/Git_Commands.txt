@@ -1,0 +1,83 @@
+https://www.digitalocean.com/community/tutorials/how-to-use-git-branches
+
+git config --get remote.origin.url (Command to know the Git URL)
+
+git clone <git repos URL> // to clone the existing git repository
+
+git clone -b <branch Name> <URL>//
+
+git add . // to add contents to git repository
+git commit -m "<Commit message>"// to commit the changes to git local repository
+git push // to push the code changes from local to central git repository
+git pull //to pull data from central git repository to lcal git repository
+git status // to see the status of local git repository
+
+//we want to have a development and a production setup for our coding environment.
+
+//We are going to treat the default "master" branch as our production and therefore need to create a single branch for development, or pre-production.
+
+git checkout -b develop // Creates a new Branch called develop
+
+//The process of moving code between branches (often from development to production) is known as merging.
+//It is important to remember when merging, that we want to be on the branch that we want to merge to.
+
+git merge <branch name> --no-ff // "--no-ff", means we want git to retain all of the commit messages prior to the merge.
+git branch -d <branch name> // command to delete branch
+
+
+git clone -b [branch-name] <url> // to clone particular branch to local
+
+git push origin <branch name>
+
+
+*********************Command to delete Git Branch*****************************
+$ git branch -d <branch_name>
+$ git push origin --delete <branch_name>
+**********************Command to fetch all branches***************************
+
+git fetch --all
+
+Pull= fetch + merge
+
+`git branch -vv`. It will show you what remote branch each of your local branches are tracking.
+
+Just typing `git branch` without any parameters will just show you the local branches you've checked out. If you want to see the remote branches (since your last `git fetch` command), you need to type `git branch -r`.
+
+********************************************************************************
+
+************************adding new remote branch***********************
+In Git 1.7.0 and later, you can checkout a new branch:
+
+git checkout -b <branch>
+Edit files, add and commit. Then push with the -u option:
+
+git push -u origin <branch>
+Git will set up the tracking information during the push.
+
+********************************************************************************
+
+***********************Command to get Git repo URL***********************
+
+git config --get remote.origin.url
+
+*******************************************************************
+
+*********************Git getting new branch from remote *****************
+
+git checkout -b <branchname> origin/<remote branch name>
+
+*******************************************************************
+
+***********************Command to make Local same as remote *******************
+git reset --hard origin/<branch name>
+*******************************************************************************
+
+************************Git command to check logs*********************************
+git log --author "Kiran Kakkera <Kiran.kakkera@in.tesco.com>" --since "Mon Jan 21"
+**********************************************************************************
+***************Git command to compare a file between two branches********************
+git diff BIST_939_POM_Changes_for_HDP_Flume_Configs master -- pom.xml
+*************************************************************************************
+***********************pointing local to remote branch*****************************
+
+ git branch --set-upstream <Local branch> origin/<remote branch>
