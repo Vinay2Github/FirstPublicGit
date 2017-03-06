@@ -1,0 +1,5 @@
+<bundle-app name='Sample_Bundle' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='uri:oozie:bundle:0.2'>
+    <coordinator name='Sample_Coordinator'>
+    <app-path>hdfs:///user/oozie/oozie_workflow/sample/coordinator.xml</app-path>
+    </coordinator>
+</bundle-app>

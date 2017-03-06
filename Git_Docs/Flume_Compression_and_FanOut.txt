@@ -1,0 +1,73 @@
+# Configuratiion file for the tibcoJMS
+##########################Configurations for Division#####################################
+
+MyFlumeAgent.sources = DivisionSource
+MyFlumeAgent.sinks = DivisionSink DivisionSinkgz
+MyFlumeAgent.channels = DivisionChannel DivisionChannelgz
+
+# JMS Queue
+MyFlumeAgent.sources.DivisionSource.type=jms
+MyFlumeAgent.sources.DivisionSource.initialContextFactory=com.tibco.tibjms.naming.TibjmsInitialContextFactory
+MyFlumeAgent.sources.DivisionSource.connectionFactory=QueueConnectionFactory
+MyFlumeAgent.sources.DivisionSource.providerURL=tcp://192.168.56.1:3133
+MyFlumeAgent.sources.DivisionSource.destinationName=DemoQueue1
+MyFlumeAgent.sources.DivisionSource.destinationType=QUEUE
+MyFlumeAgent.sources.DivisionSource.userName=admin
+MyFlumeAgent.sources.DivisionSource.batchSize=10
+MyFlumeAgent.sources.DivisionSource.passwordFile=/home/cloudera/Data/FlumeConfs/localtibPWD
+
+
+
+
+# Describe sink
+MyFlumeAgent.sinks.DivisionSinkgz.type=hdfs
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.path=/user/cloudera/Thailand_IIT/flume/LocalTibco/Divisiongz/dt=%Y%m%d/%H
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.batchSize=10
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.fileType=CompressedStream
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.codeC=gzip
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.fileSuffix=.gz
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.filePrefix=THRMS
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.rollInterval=10
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.rollSize=0
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.rollCount=10
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.useLocalTimeStamp=true
+MyFlumeAgent.sinks.DivisionSinkgz.hdfs.timeZone=IST
+#MyFlumeAgent.sinks.DivisionSink.hdfs.round = true
+#MyFlumeAgent.sinks.DivisionSink.roundValue = -10
+#MyFlumeAgent.sinks.DivisionSink.roundUnit = minute
+
+
+MyFlumeAgent.sinks.DivisionSink.type=hdfs
+MyFlumeAgent.sinks.DivisionSink.hdfs.path=/user/cloudera/Thailand_IIT/flume/LocalTibco/Division/dt=%Y%m%d/%H
+MyFlumeAgent.sinks.DivisionSink.hdfs.batchSize=10
+MyFlumeAgent.sinks.DivisionSink.hdfs.fileType=DataStream
+MyFlumeAgent.sinks.DivisionSink.hdfs.fileSuffix=.xml
+MyFlumeAgent.sinks.DivisionSink.hdfs.filePrefix=THRMS
+MyFlumeAgent.sinks.DivisionSink.hdfs.rollInterval=10
+MyFlumeAgent.sinks.DivisionSink.hdfs.rollSize=0
+MyFlumeAgent.sinks.DivisionSink.hdfs.rollCount=10
+MyFlumeAgent.sinks.DivisionSink.hdfs.useLocalTimeStamp=true
+MyFlumeAgent.sinks.DivisionSink.hdfs.timeZone=IST
+
+
+
+# Use a channel which buffers events in file
+MyFlumeAgent.channels.DivisionChannel.type=memory
+MyFlumeAgent.channels.DivisionChannel.capacity=20000
+MyFlumeAgent.channels.DivisionChannel.transactionCapacity=1000
+#MyFlumeAgent.channels.DivisionChannel.checkpointDir=/home/cloudera/Data/FlumeDirs/Checkpoint/DivCheckpoint
+#MyFlumeAgent.channels.DivisionChannel.dataDirs=/home/cloudera/Data/FlumeDirs/Data/DivData
+
+MyFlumeAgent.channels.DivisionChannelgz.type=memory
+MyFlumeAgent.channels.DivisionChannelgz.capacity=20000
+MyFlumeAgent.channels.DivisionChannelgz.transactionCapacity=1000
+
+# Bind the source and sink to the channel
+MyFlumeAgent.sources.DivisionSource.channels = DivisionChannel DivisionChannelgz
+MyFlumeAgent.sinks.DivisionSink.channel = DivisionChannel
+MyFlumeAgent.sinks.DivisionSinkgz.channel = DivisionChannelgz
+
+
+##########################Configurations for Department#####################################
+
+#flume-ng agent --conf /etc/flume-ng/conf --conf-file /home/cloudera/Data/FlumeConfs/tibcoJMS.conf --name MyFlumeAgent -Dflume.root.logger=INFO,console

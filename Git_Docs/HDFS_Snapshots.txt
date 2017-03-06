@@ -1,0 +1,30 @@
+You can refer to the below links for more information. I think It’s very good to have HDFS Snapshots taken regularly as it will not take a copy of data blocks. Few links suggest to take daily HDFS snapshot for latest 1 week. 
+
+https://hadoop.apache.org/docs/r2.7.2/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html
+https://hortonworks.com/blog/protecting-your-enterprise-data-with-hdfs-snapshots/
+https://www.cloudera.com/documentation/enterprise/5-8-x/topics/cm_bdr_managing_hdfs_snapshots.html
+
+
+We can Protect  Enterprise data in HDFS with HDFS Snapshots.
+
+HDFS Snapshots are read-only point-in-time copies of the file system. Snapshots can be taken on a subtree of the file system or the entire file system. Some common use cases of snapshots are data backup, protection against user errors.
+
+•	Snapshot creation is instantaneous
+•	Snapshots do not adversely affect regular HDFS operations
+•	Blocks in datanodes are not copied: the snapshot files record the block list and the file size. There is no data copying .
+
+
+
+If you need to check, please try these commands only in your Local VM.
+
+Make Your HDFS Directory Snapshotable:
+sudo -u hdfs hdfs dfsadmin -allowSnapshot  <HDFS Directory>
+
+
+TAKE POINT IN TIME SNAPSHOTS OF HDFS Directory:
+sudo -u hdfs hdfs dfs -createSnapshot <HDFS Directory>
+
+Delete any file in the directory who’s snapshot is taken in second step.
+
+COPY THE FILE FROM SNAPSHPOT TO THE ACTUAL DIRECTORY.
+sudo -u hdfs hdfs dfs -cp <Location_Of_File_In_Shnapshotfile> <Original_Location_Of_File>

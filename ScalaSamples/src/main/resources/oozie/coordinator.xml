@@ -1,0 +1,19 @@
+<coordinator-app name="Sample_Coordinator"  frequency="0 1 * * *"  start="2017-02-28T02:00Z" end="2017-12-31T12:00Z" timezone="UTC" xmlns="uri:oozie:coordinator:0.2">
+ <controls>
+   <concurrency>1</concurrency>
+   <execution>FIFO</execution>
+   <throttle>1</throttle>
+ </controls>
+
+  <action>
+   <workflow>
+     <app-path>/user/oozie/oozie_workflow/sample/workflow.xml</app-path>
+     <configuration>
+       <property>
+        <name>oozie.use.system.libpath</name>
+        <value>true</value>
+       </property>
+     </configuration>
+   </workflow>
+  </action>
+</coordinator-app>

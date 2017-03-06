@@ -1,0 +1,24 @@
+We can Protect  Enterprise data in HDFS with HDFS Snapshots.
+
+HDFS Snapshots are read-only point-in-time copies of the file system. Snapshots can be taken on a subtree of the file system or the entire file system. Some common use cases of snapshots are data backup, protection against user errors.
+
+•	Snapshot creation is instantaneous
+•	Snapshots do not adversely affect regular HDFS operations
+•	Blocks in datanodes are not copied: the snapshot files record the block list and the file size. There is no data copying .
+
+https://hortonworks.com/blog/protecting-your-enterprise-data-with-hdfs-snapshots/
+
+
+If you need to check, please try these commands only in your Local VM.
+
+Make Your HDFS Directory Snapshotable:
+sudo -u hdfs hdfs dfsadmin -allowSnapshot  <HDFS Directory>
+
+
+TAKE POINT IN TIME SNAPSHOTS OF HDFS Directory:
+sudo -u hdfs hdfs dfs -createSnapshot <HDFS Directory>
+
+Delete any file in the directory who’s snapshot is taken in second step.
+
+COPY THE FILE FROM SNAPSHPOT TO THE ACTUAL DIRECTORY.
+sudo -u hdfs hdfs dfs -cp <Location_Of_File_In_Shnapshotfile> <Original_Location_Of_File>

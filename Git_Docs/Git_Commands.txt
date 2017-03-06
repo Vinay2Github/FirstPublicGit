@@ -81,3 +81,12 @@ git diff BIST_939_POM_Changes_for_HDP_Flume_Configs master -- pom.xml
 ***********************pointing local to remote branch*****************************
 
  git branch --set-upstream <Local branch> origin/<remote branch>
+
+
+****************************************************
+
+git diff HEAD (Compares files in workspace with the files most recent commit) (in this statement, HEAD is used to point to most recent commit)
+git diff --staged (Compares files in workspace with the files in stage)
+
+*****************************Command to remove files**********************
+git rm (Google for more info)
