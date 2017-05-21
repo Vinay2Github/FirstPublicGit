@@ -1,0 +1,5 @@
+Classes:
+In Scala, the primary constructor for a class is coded inline with the class definition.
+At no point in time are you accessing the fields directly,
+Scala automatically provides setters and getters for the properties.
+

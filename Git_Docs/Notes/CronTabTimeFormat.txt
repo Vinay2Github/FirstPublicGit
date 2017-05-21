@@ -1,0 +1,6 @@
+Character	Descriptor		Acceptable values
+1		Minute			0 to 59, or * (no specific value)
+2		Hour			0 to 23, or * for any value. All times UTC.
+3		Day of the month	1 to 31, or * (no specific value)
+4		Month			1 to 12, or * (no specific value)
+5		Day of the week		0 to 7 (0 and 7 both represent Sunday), or * (no specific value)
